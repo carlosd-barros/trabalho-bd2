@@ -8,6 +8,28 @@
 {% block content %}
 	<div>
         <div class="content-section">
+            {% load index %}
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">Cidade</th>
+                    </tr>
+                    </thead>
+                {% for i in selected %}
+                    <tbody>
+                        <tr>
+                            <td>{{i.0}}</td>
+                            <td>{{i.1}}</td>
+                            <td>{{i.2}}</td>
+                            <td>{{i.3}}</td>
+                        </tr>
+                    </tbody>
+                {%endfor%}
+            </table>
 
             {% if form.errors %}
                 {% for field in form %}
@@ -23,19 +45,6 @@
                     </div>
                 {% endfor %}
             {% endif %}
-
-            <form method="POST"> {% csrf_token %}
-                <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Read</legend>
-                    <div class="pure-control-group">
-                        <div class="pure-control-group">
-                            {{ form|crispy }}
-                        </div>
-                </fieldset>
-                <div class="form-group">
-                    <button class="btn btn-outline-success" type="submit">Confirmar</button>
-                </div>
-            </form>
         </div>
     </div>
 {% endblock content %}

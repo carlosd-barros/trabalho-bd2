@@ -1,7 +1,9 @@
 import pyodbc
 from django.db import connection
+from django.shortcuts import render
 from db2.settings import DATABASES
 
+from django.http import HttpResponse
 from django.urls import reverse
 from django.urls.base import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -31,7 +33,7 @@ class InsertFormView(SuccessMessageMixin, FormView):
             if form.is_valid():
                 with connection.cursor() as cursor:
                     cursor.execute(f"""
-                        exec [dbo].[insert_cli] '{dados['nome']}', '{dados['cpf']}', '{dados['cidade']}';
+                        exec [dbo].[inserirDados] '{dados['nome']}', '{dados['cpf']}', '{dados['cidade']}';
                     """)
             else:
                 form = InsertForm()
@@ -50,11 +52,40 @@ class DeleteFormView(FormView):
     form_class = DeleteForm
     template_name = 'Delete.html'
     success_url = 'queryzitas:delete'
+    success_message = 'Cliente deletado com sucesso.'
+
+    def form_valid(self, form):
+        dados = form.clean() 
+        if self.request.method == "POST":
+            if form.is_valid():
+                with connection.cursor() as cursor:
+                    cursor.execute(f"exec deletarDados {dados['id']}")
+            else:
+                form = DeleteForm()
+
+        return super(
+            DeleteFormView, self).form_valid(form)
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message
+
+    def get_success_url(self):
+        return reverse(self.success_url)
+
 
 
 class ReadFormView(FormView):
     form_class = ReadForm
     template_name = 'Read.html'
+
+    def get(self, request):
+        cursor = connection.cursor()
+        cursor.execute("selecionarDados")
+        lista = []
+        for row in cursor:
+            lista.append(row)
+        return render(request, 'Read.html',{'selected':lista})
+
     success_url = reverse_lazy('queryzitas:read')
 
 class FaturamentoFormView(FormView):

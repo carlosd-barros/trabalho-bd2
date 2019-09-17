@@ -25,7 +25,11 @@ class InsertForm(forms.Form):
     )
 
 class DeleteForm(forms.Form):
-    pass
+        id = forms.CharField(
+        label='id',
+        max_length=100,
+        required=False
+    )
 
 class ReadForm(forms.Form):
     pass

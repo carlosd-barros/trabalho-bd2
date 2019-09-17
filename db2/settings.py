@@ -66,6 +66,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+        'libraries':{
+            'index': 'queryzitas.templatetags.index',
+
+            }
         },
     },
 ]
@@ -78,9 +82,9 @@ WSGI_APPLICATION = 'db2.wsgi.application'
 
 DATABASES = {
     'default': {
-        'NAME': 'django',
+        'NAME': 'brincapracrl',
         'ENGINE': 'sql_server.pyodbc',
-        'HOST': 'CARLOS-DANIEL\SQLEXPRESS',
+        'HOST': 'DESKTOP-575NB4K\SQLEXPRESS01',
         'USER': '',
         'PASSWORD': '',
         'PORT': '',
