@@ -28,7 +28,7 @@ class InsertFormView(SuccessMessageMixin, FormView):
     success_message = 'Dados inseridos com sucesso.'
     
     def form_valid(self, form):
-        dados = form.clean() 
+        dados = form.clean()
         if self.request.method == "POST":
             if form.is_valid():
                 with connection.cursor() as cursor:
@@ -74,7 +74,8 @@ class DeleteFormView(FormView):
 
 
 
-class ReadFormView(FormView):
+class ReadFormView(SuccessMessageMixin, FormView):
+    resultados = None
     form_class = ReadForm
     template_name = 'Read.html'
 
@@ -91,5 +92,5 @@ class ReadFormView(FormView):
 class FaturamentoFormView(FormView):
     form_class = FaturamentoForm
     template_name = 'Faturamento.html'
-    success_url = reverse_lazy('queryzitas:faturamneto')
+    success_url = 'queryzitas:faturamneto'
     
