@@ -25,31 +25,17 @@ class InsertForm(forms.Form):
     )
 
 class DeleteForm(forms.Form):
-        id = forms.CharField(
+    id = forms.CharField(
         label='id',
         max_length=100,
         required=False
     )
 
 class ReadForm(forms.Form):
-    """cod = forms.IntegerField(
-        label='Código',
-        required=False
-    )
-    nome = forms.CharField(
-        label='Nome',
-        required=False
-    )
-
-    def clean(self):
-        cleaned_data = super().clean()
-        cod = cleaned_data.get('cod')
-        nome = cleaned_data.get('nome')
-
-        if not cod and not nome:
-            raise forms.ValidationError(
-                "Preencha pelo menos um campo."
-            )"""
+    pass
 
 class FaturamentoForm(forms.Form):
-    pass
+    id = forms.IntegerField(
+        label='id',
+        required=False
+    )

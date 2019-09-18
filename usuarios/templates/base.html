@@ -43,13 +43,13 @@
 
             <!-- navbar do lado direito -->
             <div class="navbar-nav">
-              {% if user.is_authenticated %}
-                <a class="nav-item nav-link" href=" {% url 'auth:logout' %} ">Sair</a>
-                <a class="nav-item nav-link" href="/admin" target="_blank">Admin</a>
-              {% else %}
-                <a class="nav-item nav-link" href=" {% url 'auth:login' %} ">Login</a>
-                <a class="nav-item nav-link" href=" {% url 'auth:register' %} ">Register</a>
-              {% endif %}
+            {% if user.is_authenticated %}
+              <a class="nav-item nav-link" href="{% url 'auth:logout' %}">Sair</a>
+              <a class="nav-item nav-link" href="/admin" target="_blank">Admin</a>
+            {% else %}
+              <a class="nav-item nav-link" href="{% url 'auth:login' %}">Login</a>
+              <a class="nav-item nav-link" href="{% url 'auth:register' %}">Register</a>
+            {% endif %}
 			      </div>
           </div>
         </div>

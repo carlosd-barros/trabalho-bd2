@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock title %}
+
+
+{% block content %}
+    <div class="content-section">
+        <form method="POST"> {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Cadastre-se</legend>
+                {% load crispy_forms_tags %}
+                {{ form.nom.field_errors }}
+
+                {{ form|crispy }}
+                
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" role="button" aria-pressed="true">Enviar</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Já possui uma conta? <a class="ml-2" href="{% url 'auth:login' %}">Entrar</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}

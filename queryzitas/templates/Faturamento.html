@@ -23,7 +23,7 @@
 
             <form method="POST"> {% csrf_token %}
                 <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Faturamneto</legend>
+                    <legend class="border-bottom mb-4">Faturamento</legend>
                     <div class="pure-control-group">
                         <div class="pure-control-group">
                             {{ form|crispy }}
@@ -34,6 +34,25 @@
                 </div>
             </form>
         </div>
+        
+        <h3>Resultados</h3>
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Faturamento</th>
+                </tr>
+                </thead>
+            {% for i in resultados %}
+                <tbody>
+                    <tr>
+                        <td>{{i.0}}</td>
+                        <td>{{i.1}}</td>
+                    </tr>
+                </tbody>
+            {%endfor%}
+        </table>
+            
     </div>
 {% endblock content %}
  

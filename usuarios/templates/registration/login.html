@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block titulo %}Login{% endblock titulo %}
+
+
+{% block content %}
+	<div class="container">
+		{% if messages %}
+        {% for message in messa %}
+          <div class="alert alert-{{ message.tag }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+		<h1>Faça seu login</h1>
+		<form action="." method="post"> {% csrf_token %}
+			{% load crispy_forms_tags %}
+			{{ form.nom_field_errors }}
+
+			{{ form|crispy }}
+			
+			<button class="btn btn-outline-info" type="submit">Confirmar</button>
+		</form>
+	</div>
+{% endblock content %}

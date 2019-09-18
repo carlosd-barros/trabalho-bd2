@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'queryzitas',
+    'usuarios',
     'crispy_forms',
 ]
 
@@ -82,14 +83,14 @@ WSGI_APPLICATION = 'db2.wsgi.application'
 
 DATABASES = {
     'default': {
-        'NAME': 'brincapracrl',
+        'NAME': 'django',
         'ENGINE': 'sql_server.pyodbc',
-        'HOST': 'DESKTOP-575NB4K\SQLEXPRESS01',
+        'HOST': 'CARLOS-DANIEL\SQLEXPRESS',
         'USER': '',
         'PASSWORD': '',
         'PORT': '',
         'OPTIONS': {
-            'host_is_server': True,
+            'host_is_server': False,
             'autocommit': True,
             'unicode_results': True,
         },
@@ -140,3 +141,6 @@ STATICFILES_DIRS = (
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'queryzitas:home'
+LOGOUT_REDIRECT_URL = 'auth:login'

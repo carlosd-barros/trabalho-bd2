@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Logout{% endblock title %}
+
+{% block content %}
+    <h2>Você foi desconectado!</h2>
+    <div class="border-top tp-3">
+        <small class="text-muted">
+            <a href="{% url 'auth:login' %}">Conecte-se agora</a>
+        </small>
+    </div>
+{% endblock content %}
